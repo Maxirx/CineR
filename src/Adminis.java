@@ -34,97 +34,33 @@ public class Adminis {
 			this.crearCartelera();
 			break;
 		case 3:
-			
-			this.modificarSala();
-			break;
-		case 4: 
-			
-			this.eliminarSala();
-			break;
-		case 5: 
-			break;
-		case 6:
-			break;
-		case 7:
+
+
+
 			
 			
 		}
 		
+	}
+	public void verSalas() throws SQLException {
+		
+		String sql="select * from Salas inner join Tipo_Sala using(idTipo_Sala);";
+		ResultSet r=conn.RetornarConsulta(sql);
+		
+		System.out.println("idSala| \t Numero|\t Capacidad|\t Tipo");
+		
+		while(r.next()) {
+		
+			System.out.println(r.getInt("idSala")+"\t"+r.getString("Numero")+"\t"+
+			r.getString("Capacidad")+"\t"+r.getString("tipo"));
+		}
 	}
 	
-	public void eliminarSala() throws SQLException {
-		
-		int id=0;
-		int confirm=0;
-		String sql="select idCartelera,Nombre,Hora,idSala from cartelera inner\n"
-				+ "join Peliculas using(idPelicula);";
-		
-		ResultSet r=conn.RetornarConsulta(sql);
-		System.out.println("id|\t Nombre Pelicula|\t Hora|\t sala");
-		
-		while(r.next()) {
-			
-			System.out.println(r.getInt("idCartelera")+"\t");
-			System.out.println(r.getString("Nombre")+"\t");
-			System.out.println(r.getString("Hora")+"\t");
-			System.out.println(r.getInt("idSala")+"\t");
-		}
-		
-		System.out.println("Seleccione el id de la Cartlera a modificar");
-		id=t.nextInt();
-	
-		System.out.println("Esta seguro de eliminar 1-SI 0-NO");
-		confirm=t.nextInt();
-		
-		if(confirm==1) {
-			sql="delete from cartelera where idCartelera="+id+";";
-			conn.Consultas(sql);
-			System.out.print("Cartelera eliminada con exito");
-		}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
 	}
-	public void modificarSala() throws SQLException {
-		
-		int id=0;
-		int idP=0;
-		String sql="select idCartelera,Nombre,Hora,idSala from cartelera inner\n"
-				+ "join Peliculas using(idPelicula);";
-		
-		ResultSet r=conn.RetornarConsulta(sql);
-		System.out.println("id|\t Nombre Pelicula|\t Hora|\t sala");
-		
-		while(r.next()) {
-			
-			System.out.println(r.getInt("idCartelera")+"\t");
-			System.out.println(r.getString("Nombre")+"\t");
-			System.out.println(r.getString("Hora")+"\t");
-			System.out.println(r.getInt("idSala")+"\t");
-		}
-		
-		System.out.println("Seleccione el id de la Cartlera a modificar");
-		id=t.nextInt();
-		
-		System.out.print("Seleccione la pelicula nueva");
-		
-		r=conn.RetornarConsulta("select * from Peliculas;");
-		System.out.println("id|\t Nombre|\t Duracion");
-		
-		while(r.next()) {
-			
-			System.out.print(r.getInt("idPelicula")+"\n");
-			System.out.print(r.getString("Nomobre")+"\n");
-			System.out.print(r.getString("Duracion")+"\n");
-			
-		}
-		System.out.println("Ingrese el id de la nueva Pelicula");
-		idP=t.nextInt();
-		
-		
-		sql="UPDATE `Cine`.`cartelera` SET `idPelicula` = "+idP +" WHERE (`idCartelera` = "+id+");";
-		conn.Consultas(sql);
-		
-		System.out.print("Cartelera actualizada");
-		
-	}
+
 	
 	public void crearCartelera() throws SQLException {
 		
@@ -174,22 +110,5 @@ public class Adminis {
 		
 	}
 	
-	public void verSalas() throws SQLException {
-		
-		String sql="select * from Salas inner join Tipo_Sala using(idTipo_Sala);";
-		ResultSet r=conn.RetornarConsulta(sql);
-		
-		System.out.println("idSala| \t Numero|\t Capacidad|\t Tipo");
-		
-		while(r.next()) {
-		
-			System.out.println(r.getInt("idSala")+"\t"+r.getString("Numero")+"\t"+
-			r.getString("Capacidad")+"\t"+r.getString("tipo"));
-		}
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
 }

@@ -18,8 +18,7 @@ public class User {
 		
 	}
 	
-	public User(int idUser, String nombre, String apellido, String mail, String dni, String pass, int idRol,
-			int esFrecuente) {
+	public User(int idUser, String nombre, String apellido, String mail, String dni, String pass, int Rol) {
 		super();
 		this.idUser = idUser;
 		this.Nombre = nombre;
@@ -27,7 +26,7 @@ public class User {
 		this.mail = mail;
 		this.dni = dni;
 		this.password = pass;
-		this.Rol = idRol;
+		this.Rol = Rol;
 
 	}
 	public int getidUser() {
@@ -66,10 +65,10 @@ public class User {
 	public void password(String password) {
 		this.password = password;
 	}
-	public int getIdRol() {
+	public int getRol() {
 		return Rol;
 	}
-	public void IdRol(int Rol) {
+	public void Rol(int Rol) {
 		this.Rol = Rol;
 	}
 

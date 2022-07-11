@@ -73,7 +73,7 @@ try {
 	
 
 
-		sql="insert into Usuarios (Nombre,Apellido,mail,Dni,password,Rol,clienteFrec) "+
+		sql="insert into Usuarios (Nombre,Apellido,mail,Dni,password,Rol) "+
 		" values (?,?,?,?,?,?,?)";
 		
 		 PreparedStatement preparedStmt = conn.prepareStatement(sql);

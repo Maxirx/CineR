@@ -37,8 +37,8 @@ public class LandingUser {
 		System.out.println("Ingrese el mail");
 		String mail=t.next();
 		System.out.println("Ingrese password");
-		String pass=t.next();
-		IniSession login=new IniSession(mail,pass);
+		String password=t.next();
+		IniSession login=new IniSession(mail,password);
 		ResultSet r=login.ingresar();
 		if(r.next()) {
 			System.out.println("Bienvenido otra vez");
@@ -46,8 +46,7 @@ public class LandingUser {
 				System.out.println("Bienvenido: \t"+r.getString("Nombre").concat("\t").concat(r.getString("Apellido")));
 						
 				User u=new User(r.getInt("idUser"),r.getString("Nombre"),r.getString("Apellido"),
-						r.getString("mail"),r.getString("Dni"),r.getString("password"),r.getInt("Rol"),
-						r.getInt("ClienteFrec"));
+						r.getString("mail"),r.getString("Dni"),r.getString("password"),r.getInt("Rol"));
 				
 				Adminis admin= new Adminis(u);
 				
@@ -55,8 +54,7 @@ public class LandingUser {
 				System.out.println("Bienvenido otra vez"+r.getString("Nombre"));
 				
 				User u=new User(r.getInt("idUsuario"),r.getString("Nombre"),r.getString("Apellido"),
-						r.getString("mail"),r.getString("Dni"),r.getString("pass"),r.getInt("idRol"),
-						r.getInt("EsFrecuente"));
+						r.getString("mail"),r.getString("Dni"),r.getString("pass"),r.getInt("idRol"));
 				User_Options menUser=new User_Options(u);
 			}
 			
@@ -91,7 +89,6 @@ public class LandingUser {
 			listaDeUsuario.add(d);
 			listaDeUsuario.add(pass);
 			listaDeUsuario.add("2");
-			listaDeUsuario.add("0");
 			conn.NuevoUser(listaDeUsuario);
 		}
 
